@@ -1,14 +1,20 @@
-from tkinter import *
-from tkinter import ttk
+"""Гори в аду мфти"""
+
+# from tkinter import *
+# from tkinter import ttk
 import random
 import numpy as np
-import docx
+import docx  # dox as 
 
 class Graph:
-    def __init__(self, name: str):
+    def __init__(self, name: str, equalgraph: bool = True):
         self.name = name
         self.n = -1
         self.linkers = []
+        
+        # Параметры направленного графа
+        self.equalgraph = equalgraph
+        self.len_line = 3 if equalgraph else 4
 
         # Tk параметры
         self.width = 1200
@@ -16,17 +22,21 @@ class Graph:
         self.space = 150
 
         # Чтение файла txt
+        text = "" if equalgraph else "_unequalgraph"
         text_tmp = "Сделай по нормальному файл блин!"
-        f = open(f"storage/{name}.txt", "r")
+        f = open(f"storage/{name + text}.TXT", "r", encoding="utf-8")
         flag = 0
         for line in f:
             if flag == 3:
                 lst = line.split('-')
-                self.linkers += [int(lst[0]) - 1, int(lst[1]) - 1, int(lst[2])]
+                if equalgraph:
+                    self.linkers += [int(lst[0]) - 1, int(lst[1]) - 1, int(lst[2])]
+                else:
+                    self.linkers += [int(lst[0]) - 1, int(lst[1]) - 1, int(lst[2]), int(lst[3])]
                 if int(lst[0]) > self.n or int(lst[0]) < 1 or int(lst[1]) > self.n or int(lst[1]) < 1:
                     raise ValueError(f"{text_tmp} Номера точек должны быть от 1 до N!")
-                if int(lst[2]) <= 0:
-                    raise ValueError(f"{text_tmp} Ты где такие расстояния видел?")
+                if int(lst[2]) <= 0 or (not equalgraph and int(lst[3]) <= 0):
+                    raise ValueError(f"{text_tmp} Ты где отрицательные расстояния видел?")
             if flag == 2 and 'Палочки:' in line:
                 flag = 3
             if flag == 1:
@@ -36,7 +46,7 @@ class Graph:
                 flag = 1
         f.close()
 
-        # Проверки
+        # Проверки на вшивость
         if flag == 0:
             raise NameError(f"{text_tmp} Задание точек идёт на следующей строке после 'Точки:'")
         if flag == 2:
@@ -45,14 +55,14 @@ class Graph:
         # Параметры после прочтения файла
         self.table_min_distance = [[0 if i == j else -1 for i in range(self.n)] for j in range(self.n)]
         self.table_way = [[' ' for i in range(self.n)] for j in range(self.n)]
-        self.linkers = [[self.linkers[3 * i + j] for j in range(3)] for i in range(int(len(self.linkers) // 3))]
+        self.linkers = [[self.linkers[self.len_line * i + j] for j in range(self.len_line)] for i in range(int(len(self.linkers) // self.len_line))]
 
     def calculate(self):
         # Инициализация
-        f = open("storage/counter.txt", 'r')
+        f = open("storage/counter.TXT", 'r')
         counter = int([line for line in f][0])
         f.close()
-        f = open("storage/counter.txt", 'w')
+        f = open("storage/counter.TXT", 'w')
         f.write(f"{counter + 1}")
         f.close()
         doc = docx.Document()
@@ -78,17 +88,19 @@ class Graph:
                         if j in node_remained:
                             if link[0] == k and link[1] == j or \
                                     link[0] == j and link[1] == k:
+                                numb = 3 if (not self.equalgraph and link[0] == k) else 2
+                                # print(f"numb={numb}")
                                 text += f"u{j + 1}=min(u{j + 1}; u{k + 1}+c{k + 1}{j + 1})=min(" \
-                                        f"{distances[j] if distances[j] < 1e10 else '∞'}; {accumulation}+{link[2]}) = "
+                                        f"{distances[j] if distances[j] < 1e10 else '∞'}; {accumulation}+{link[numb]}) = "
                                 if way[k] == '0':
                                     way[j] = str(j + 1)
                                 elif distances[j] > 1e9:
                                     way[j] = way[k]
                                 elif way[j] == '-1':
-                                    way[j] = str(j + 1) if distances[j] < link[2] + accumulation else way[k]
+                                    way[j] = str(j + 1) if distances[j] < link[numb] + accumulation else way[k]
                                 else:
-                                    way[j] = way[j] if distances[j] < link[2] + accumulation else way[k]
-                                distances[j] = min(distances[j], link[2] + accumulation)
+                                    way[j] = way[j] if distances[j] < link[numb] + accumulation else way[k]
+                                distances[j] = min(distances[j], link[numb] + accumulation)
                                 text += f"{distances[j]} ({way[j]})\n"
                 doc.add_paragraph(text)
                 distances_remain = [distances[j] for j in node_remained]
@@ -102,7 +114,7 @@ class Graph:
                 node_remained.remove(k)
             self.table_way[i][k] = way[k]
         # print(f"self.table_min_distance: {self.table_min_distance}")
-        print(f"way: {self.table_way}")
+        # print(f"way: {self.table_way}")
 
         # Создание таблицы, сохранение\
         doc.add_paragraph('Матрица кратчайших расстояний:')
@@ -129,7 +141,8 @@ class Graph:
                     cells[j].text = f"{j}"
                 if i > 0 and j == 0:
                     cells[j].text = f"{i}"
-        doc.save(f"{self.name}_{counter:04}.docx")
+        tmp = "" if self.equalgraph else "unequalgraph"
+        doc.save(f"word_files/{self.name}_{tmp}_{counter:04}.docx")
 
     def plot(self):
         root = Tk()

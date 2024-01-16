@@ -11,6 +11,6 @@
 - [] Translater: перевод абзацев из буфера обмена
 - [] Symbolic LQR: реализация линейно-квадратичного регулятора
 - [] Chapter 2 NIR: вторая глава диплома, поиск начальных приближений для аналитически нерешаемой задачи
-- [] The fly in bus: муха в автобусе иногда бьётся об окно, а иногда не бьётся
+- [] The fly in bus: муха в автобусе иногда бьётся об окно, а иногда не бьётся (гифка: автобус тормозит и разгоняется)
 
-![](https://github.com/PernatiyZybr/Python/storage/res_3.avi)
+![](https://github.com/PernatiyZybr/Python/blob/main/storage/res_fly.gif)

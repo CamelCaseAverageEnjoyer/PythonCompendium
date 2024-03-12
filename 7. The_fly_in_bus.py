@@ -1,3 +1,4 @@
+"""Да муха. Да в автобусе. Вопросы?"""
 import matplotlib.pyplot as plt
 import numpy as np
 

@@ -20,9 +20,9 @@
 
 ## Бесполезная галерея
 - Прыжки в длинну и ширину:
-![](storage/res_hrd.gif)
+![](storage/res_hrd.avi)
 - Огибание препятствий:
-![](storage/res_sat.gif)
+![](storage/res_sat.avi)
 - Муха в автобусе:
 ![](storage/res_fly.gif)
 - Машинки катаются в своё удовольствие:

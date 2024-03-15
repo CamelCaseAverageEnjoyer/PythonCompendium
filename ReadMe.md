@@ -20,14 +20,22 @@
 
 ## Бесполезная галерея
 - Прыжки в длинну и ширину:
-![](storage/res_hrd.avi)
-- Огибание препятствий:
-![](storage/res_sat.avi)
+
+![](storage/res_hdr_3_3.gif =300x)
+
 - Муха в автобусе:
-![](storage/res_fly.gif)
+
+![](storage/res_fly.gif =300x)
+
 - Машинки катаются в своё удовольствие:
-![](MyCarEngine/res_2.gif)
+
+![](MyCarEngine/res_2.gif =300x)
+
 - Диско-шар:
-![](storage/res_sphere.png)
+
+![](storage/res_sphere.png =300x)
+
 - Ментальная аура банки пепси:
-![](storage/res_dobry_cola.png)
+
+
+![](storage/res_dobry_cola.png =300x)

@@ -10,6 +10,7 @@
 - MyCarEngine: непризнанный гений страдает хернёй
 - NearEarthCoordinates: перевод между системами координат с дальнейшим преобразованием как **локальную библиотеку** через **wheel**
 - Study: ну вроде тут должны быть записи по курсам
+- TinyNotebooks: мелкая мелочь
 
 Файлы:
 - Graphic solution: графическое решение системы уравнений
@@ -19,22 +20,19 @@
 - Chapter 2 NIR: вторая глава диплома, поиск начальных приближений для аналитически нерешаемой задачи
 
 ## Бесполезная галерея
-- Прыжки в длинну и ширину:
-
-![](storage/res_hdr_3_3.gif)
 
 - Муха в автобусе:
 
-![](storage/res_fly.gif)
+<img src="storage/res_fly.gif" width="400">
 
 - Машинки катаются в своё удовольствие:
 
-![](MyCarEngine/res_2.gif)
+<img src="MyCarEngine/res_2.gif" width="400">
 
 - Диско-шар:
 
-![](storage/res_sphere.png)
+<img src="storage/res_sphere.png" width="400">
 
 - Ментальная аура банки пепси:
 
-![](storage/res_dobry_cola.png)
+<img src="storage/res_dobry_cola.png" width="400">

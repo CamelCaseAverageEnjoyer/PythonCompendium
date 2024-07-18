@@ -1,6 +1,16 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# ----------------------------------------- ТРИВИАЛЬНЫЕ ФУНКЦИИ
+def clip(a: float, bot: float, top: float) -> float:
+    if a < bot:
+        return bot
+    if a > top:
+        return top
+    return a
+
+
+# ----------------------------------------- ФУНКЦИИ МАТРИЦ И ВЕКТОРОВ
 def quart2dcm(L):
     """Функция ищет матрицу поворота из кватерниона поворота; \n
     Кватернион L передаётся вектором длины 4; \n

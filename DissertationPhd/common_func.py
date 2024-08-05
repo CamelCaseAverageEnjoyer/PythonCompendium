@@ -37,14 +37,29 @@ def q_dot(L1, L2):
                      L1[0] * L2[2] + L1[2] * L2[0] + L1[3] * L2[1] - L1[1] * L2[3],
                      L1[0] * L2[3] + L1[3] * L2[0] + L1[1] * L2[2] - L1[2] * L2[1]])
 
-def get_U_S(A, w_0, t):
-    from sympy import sin, cos, Matrix
-    U = Matrix([[0, 1, 0],
-                [0, 0, 1],
-                [1, 0, 0]]) @ \
-        Matrix([[cos(t * w_0), sin(t * w_0), 0],
-                [-sin(t * w_0), cos(t * w_0), 0],
-                [0, 0, 1]])
+def get_U_S(A, w_0, t, ECCENTRICITY = None, INCLINATION = None):
+    from sympy import sin, cos, Matrix, atan, sqrt, tan
+    if ECCENTRICITY is None and INCLINATION is None:
+        U = Matrix([[0, 1, 0],
+                    [0, 0, 1],
+                    [1, 0, 0]]) @ \
+            Matrix([[cos(t * w_0), sin(t * w_0), 0],
+                    [-sin(t * w_0), cos(t * w_0), 0],
+                    [0, 0, 1]])
+    else:
+        e = 0 if ECCENTRICITY is None else ECCENTRICITY
+        i = 0 if INCLINATION is None else INCLINATION
+        E = t * w_0  # Эксцентрическая аномалия
+        f = 2 * atan(sqrt((1 + e) / (1 - e)) * tan(E / 2))  # Истинная аномалия
+        U = Matrix([[0, 1, 0],  # Поворот к экваториальной плоскости
+                    [0, 0, 1],
+                    [1, 0, 0]]) @ \
+            Matrix([[cos(f), sin(f), 0],  # Разница между истинной аномалией и местной
+                    [-sin(f), cos(f), 0],
+                    [0, 0, 1]]) @ \
+            Matrix([[1, 0, 0],
+                    [0, cos(i), sin(i)],  # Поворот к плоскости орбиты
+                    [0, -sin(i), cos(i)]])
     S = A @ U.T
     return U, S
 

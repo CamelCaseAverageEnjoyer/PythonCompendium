@@ -1,4 +1,4 @@
-print("Init working, smth is created, and so on...")
+print("Инициализация работает, что-то создается и так далее..")
 val = 42
 
-import stateful_package.test
+import lesson04.stateful_package.test

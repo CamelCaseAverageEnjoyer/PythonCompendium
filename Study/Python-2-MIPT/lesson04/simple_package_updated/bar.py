@@ -1,2 +1,2 @@
 def bar():
-    print("Bar is working")
+    print("Работает функция bar")

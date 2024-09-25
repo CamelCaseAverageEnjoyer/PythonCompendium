@@ -1,5 +1,6 @@
 def foo():
-    print("Foo is working, context", __name__)
+    print("Работает функция foo |", __name__)
 
-print("Top level code is working, context", __name__)
+print("Работает код верхнего уровня |", __name__)
 foo()
+

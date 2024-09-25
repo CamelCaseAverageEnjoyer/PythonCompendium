@@ -1,8 +1,8 @@
 def foo():
-    print("Our __name__ is:",  __name__)
-    print("Foo is working")
+    print("Сейчас __name__ =",  __name__)
+    print("Работает функция foo")
 
 if __name__ == "__main__":
-    print("Our __name__ is:",  __name__)
-    print("Top level code is working")
+    print("Сейчас __name__ =",  __name__)
+    print("Работает код верхнего уровня")
     foo()

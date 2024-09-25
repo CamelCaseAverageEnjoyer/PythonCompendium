@@ -1,4 +1,4 @@
-import simple_package_updated.foo
-import simple_package_updated.bar
+import lesson04.simple_package_updated.foo
+import lesson04.simple_package_updated.bar
 
-__all__ = ["foo", "bar"]
+__all__ = ["foo"]

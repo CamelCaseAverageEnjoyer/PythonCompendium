@@ -1,4 +1,4 @@
-import stateful_package
+import lesson04.stateful_package as stateful_package_new
 
 def test():
-    print("Test: %d" % stateful_package.val)
+    print(f"Тест: {stateful_package_new.val}")

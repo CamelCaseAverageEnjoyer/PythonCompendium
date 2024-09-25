@@ -1,2 +1,2 @@
 def foo():
-    print("Foo is working")
+    print("Работает функция foo")

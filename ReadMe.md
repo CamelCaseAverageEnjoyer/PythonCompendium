@@ -29,6 +29,10 @@
 
 <img src="MyCarEngine/res_2.gif" width="400">
 
+- Мышка-норушка не теряется в норке:
+
+<img src="storage/find_way.gif" width="400">
+
 - Диско-шар:
 
 <img src="storage/res_sphere.png" width="400">

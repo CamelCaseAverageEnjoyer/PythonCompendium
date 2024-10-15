@@ -9,7 +9,6 @@ def clip(a: float, bot: float, top: float) -> float:
         return top
     return a
 
-
 # ----------------------------------------- ФУНКЦИИ МАТРИЦ И ВЕКТОРОВ
 def quart2dcm(L):
     """Функция ищет матрицу поворота из кватерниона поворота; \n

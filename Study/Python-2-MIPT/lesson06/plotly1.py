@@ -27,3 +27,4 @@ fig.add_trace(cubes(size, 0,0,0, 'rgba(100,0,100,0.1)'))
 
 # add inner cubes
 fig.add_trace(cubes(size, size,0,0, 'rgba(100,0,100,0.1)'))
+fig.show()
